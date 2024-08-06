@@ -10,6 +10,9 @@ let [counter, setcount] = useState(14)
 const counterValue = ()=> {
 
   // setcount(counter + 1)
+  // setcount(counter + 1)
+  // setcount(counter + 1)
+  // setcount(counter + 1)
   setcount(prevCounter => prevCounter + 1)
   setcount(prevCounter => prevCounter + 1)
   setcount(prevCounter => prevCounter + 1)
