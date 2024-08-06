@@ -4,32 +4,40 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-// let [counter, setcount] = useState(14)
+let [counter, setcount] = useState(14)
 
-//   // let counter = 15
-// const counterValue = ()=> {
-//   console.log("click",counter);
-//   counter = counter + 1
-//   setcount(counter)
-// }
-let [counter, setcount] = useState(0)
- const counterValue = () => {
-  if (counter < 20){
-    setcount(counter+1)
+  // let counter = 15
+const counterValue = ()=> {
 
-  }
+  // setcount(counter + 1)
+  setcount(prevCounter => prevCounter + 1)
+  setcount(prevCounter => prevCounter + 1)
+  setcount(prevCounter => prevCounter + 1)
+  setcount(prevCounter => prevCounter + 1)
+}
+const counterremove = ()=> {
+  console.log("click",counter);
+
+  setcount(counter - 1)
+}
+// let [counter, setcount] = useState(0)
+//  const counterValue = () => {
+//   if (counter < 20){
+//     setcount(counter+1)
+
+//   }
   
-  }
+//   }
   
-  const counterremove = () => {
-    if (counter > 0){
+//   const counterremove = () => {
+//     if (counter > 0){
     
-      setcount(counter - 1)
-    }
+//       setcount(counter - 1)
+//     }
     
     
    
-  }
+//   }
 
   return (
     <>
