@@ -8,7 +8,8 @@ function TodoItem({ todo }) {
     const [todoMsg, setTodoMsg] = useState(todo?.todo)
 
     const editTodo = () => {
-        UpdateTodo(todo?.id, { ...todo, todo: todoMsg })
+        UpdateTodo(todo.id, { ...todo, todo: todoMsg })
+        setIsTodoEditable(false)
     };
 useEffect(()=>{
     console.log(todo);
