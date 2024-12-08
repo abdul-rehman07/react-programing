@@ -1,15 +1,16 @@
-import { useState } from 'react'
-
+import React, { useState, useContext } from 'react'
+import display from './display'
 
 function App() {
   const [name, setName] = useState('')
 
+  const displayValue = createContext()
+
   return (
-    <>
-      <input value={name} onClick={e => e.target.value} />
-      <h3>my name is {name} </h3>
-      <button>press</button>
-    </>
+    <displayValue.Provider value={name} >
+      <input value={name} onChange={e => setName(e.target.value)} />
+      <display />
+    </displayValue.Provider>
   )
 }
 

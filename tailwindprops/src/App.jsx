@@ -3,20 +3,32 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Card from './components/card'
+import Inputfeild from './components/inputfeild'
+import { countercontext } from './components/createcontext'
 
 function App() {
-  const [count, setCount] = useState(0)
-let myobj = {
-  user  :'hunny',
-  age:20
-}
-let newarr=[1,2,3]
+  const [number, setnumber] = useState(0)
+  const [displaying, setdisplay] = useState()
+
+  const display = (e) => {
+    e.preventDefault()
+    setdisplay({ number })
+  }
+
+
   return (
     <>
-    <h1 className='bg-green-400 rounded-xl text-black p-4 mb-4'>hello TailWind</h1>
+      <countercontext.Provider value={{ number, displaying, setdisplay, setnumber }}>
+        <input type="text" value={number} placeholder='text' onChange={e => setnumber(e.target.value)}></input>
+        <button onClick={display}>press</button>
+        {/* <div>{setnumber}</div> */}
 
-<Card username = "hunnyaurcoding"  btntext="click me" />
-<Card username = "hunnywithprograming"   />
+        <Inputfeild />
+        <h1 className='bg-green-400 rounded-xl text-black p-4 mb-4'>hello TailWind</h1>
+
+        <Card username="hunnyaurcoding" btntext="click me" />
+        <Card username="hunnywithprograming" />
+      </countercontext.Provider>
     </>
   )
 }
