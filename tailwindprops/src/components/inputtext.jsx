@@ -1,12 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { countercontext } from './createcontext'
 
-
-
-
 function Inputtext() {
-    const [number, setnumber] = useState(0)
-
+    const [number, setnumber] = useState('')
     const { setdisplay } = useContext(countercontext)
 
     const display = (e) => {

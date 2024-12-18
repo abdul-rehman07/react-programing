@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import Card from './components/card'
 import Inputfeild from './components/inputfeild'
 import { countercontext } from './components/createcontext'
 import Inputtext from './components/inputtext'
