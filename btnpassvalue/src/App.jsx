@@ -7,7 +7,7 @@ import { Example } from "./button/Data.js";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [passvalue, setPassValue] = useState("components");
+  const [passvalue, setPassValue] = useState();
 
   function handleSelect(selectedButton) {
     setPassValue(selectedButton);
@@ -43,13 +43,17 @@ function App() {
           <Tabbtn onSelect={() => handleSelect("react")}>react</Tabbtn>
           <Tabbtn onSelect={() => handleSelect("button")}>button</Tabbtn>
         </menu>
-        <div>
-          <h3>{Example[passvalue].title}</h3>
-          <p>{Example[passvalue].description}</p>
-          <pre>
-            <code>{Example[passvalue].code}</code>
-          </pre>
-        </div>
+        {!passvalue ? (
+          <p>Please press the button</p>
+        ) : (
+          <div>
+            <h3>{Example[passvalue].title}</h3>
+            <p>{Example[passvalue].description}</p>
+            <pre>
+              <code>{Example[passvalue].code}</code>
+            </pre>
+          </div>
+        )}
       </section>
     </>
   );
