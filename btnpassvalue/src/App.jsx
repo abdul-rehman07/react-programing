@@ -1,59 +1,59 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Tabbtn from "./button/TabButton";
 import { Example } from "./button/Data.js";
+import { CORE_CONCEPTS } from "./Database.js";
+import Header from "./Header/Header.jsx";
+import CoreConcept from "./core-cocept.jsx";
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0);
   const [passvalue, setPassValue] = useState();
 
   function handleSelect(selectedButton) {
     setPassValue(selectedButton);
   }
 
+  let valuepassing = <p>Please press the button.</p>;
+
+  if (passvalue) {
+    valuepassing = (
+      <div>
+        <h3>{Example[passvalue].title}</h3>
+        <p>{Example[passvalue].description}</p>
+        <pre>
+          <code>{Example[passvalue].code}</code>
+        </pre>
+      </div>
+    );
+  }
+
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+
+      <main>
+        <section>
+          <h2>Core Concept</h2>
+          <ul>
+            {CORE_CONCEPTS.map((conceptsitems) => (
+              <CoreConcept key={conceptsitems.title} {...conceptsitems} />
+            ))}
+
+          </ul>
+        </section>
+      </main>
       <section>
         <h2>Example</h2>
         <menu>
-          <Tabbtn onSelect={() => handleSelect("components")}>Component</Tabbtn>
-          <Tabbtn onSelect={() => handleSelect("jsx")}>jsx</Tabbtn>
-          <Tabbtn onSelect={() => handleSelect("react")}>react</Tabbtn>
-          <Tabbtn onSelect={() => handleSelect("button")}>button</Tabbtn>
+          <Tabbtn isSelected={passvalue === "components"} onSelect={() => handleSelect("components")}>Component</Tabbtn>
+          <Tabbtn isSelected={passvalue === "jsx"} onSelect={() => handleSelect("jsx")}>jsx</Tabbtn>
+          <Tabbtn isSelected={passvalue === "react"} onSelect={() => handleSelect("react")}>react</Tabbtn>
+          <Tabbtn isSelected={passvalue === "button"} onSelect={() => handleSelect("button")}>button</Tabbtn>
         </menu>
-        {!passvalue ? (
-          <p>Please press the button</p>
-        ) : (
-          <div>
-            <h3>{Example[passvalue].title}</h3>
-            <p>{Example[passvalue].description}</p>
-            <pre>
-              <code>{Example[passvalue].code}</code>
-            </pre>
-          </div>
-        )}
+        {valuepassing}
       </section>
     </>
   );
