@@ -28,14 +28,16 @@ export default function Examples() {
 
     return (
         <Section title={"Example"}>
-            <Tab button={
-                <>
-                    <Tabbtn isSelected={passvalue === "components"} onClick={() => handleSelect("components")}>Component</Tabbtn>
-                    <Tabbtn isSelected={passvalue === "jsx"} onClick={() => handleSelect("jsx")}>jsx</Tabbtn>
-                    <Tabbtn isSelected={passvalue === "react"} onClick={() => handleSelect("react")}>react</Tabbtn>
-                    <Tabbtn isSelected={passvalue === "button"} onClick={() => handleSelect("button")}>button</Tabbtn>
-                </>
-            }>
+            <Tab
+                // Buttonscontainer="menu"
+                button={
+                    <>
+                        <Tabbtn isSelected={passvalue === "components"} onClick={() => handleSelect("components")}>Component</Tabbtn>
+                        <Tabbtn isSelected={passvalue === "jsx"} onClick={() => handleSelect("jsx")}>jsx</Tabbtn>
+                        <Tabbtn isSelected={passvalue === "react"} onClick={() => handleSelect("react")}>react</Tabbtn>
+                        <Tabbtn isSelected={passvalue === "button"} onClick={() => handleSelect("button")}>button</Tabbtn>
+                    </>
+                }>
                 {valuepassing}
             </Tab>
             <menu>
