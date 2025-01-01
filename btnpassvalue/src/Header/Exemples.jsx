@@ -1,7 +1,8 @@
-
 import Tabbtn from "../button/TabButton";
 import { Example } from "../button/Data.js";
 import { useState } from "react";
+import Section from "./Section.jsx";
+import Tab from "../button/Tab.jsx";
 
 export default function Examples() {
     const [passvalue, setPassValue] = useState();
@@ -26,15 +27,20 @@ export default function Examples() {
     }
 
     return (
-        <section>
-            <h2>Example</h2>
+        <Section title={"Example"}>
+            <Tab button={
+                <>
+                    <Tabbtn isSelected={passvalue === "components"} onClick={() => handleSelect("components")}>Component</Tabbtn>
+                    <Tabbtn isSelected={passvalue === "jsx"} onClick={() => handleSelect("jsx")}>jsx</Tabbtn>
+                    <Tabbtn isSelected={passvalue === "react"} onClick={() => handleSelect("react")}>react</Tabbtn>
+                    <Tabbtn isSelected={passvalue === "button"} onClick={() => handleSelect("button")}>button</Tabbtn>
+                </>
+            }>
+                {valuepassing}
+            </Tab>
             <menu>
-                <Tabbtn isSelected={passvalue === "components"} onSelect={() => handleSelect("components")}>Component</Tabbtn>
-                <Tabbtn isSelected={passvalue === "jsx"} onSelect={() => handleSelect("jsx")}>jsx</Tabbtn>
-                <Tabbtn isSelected={passvalue === "react"} onSelect={() => handleSelect("react")}>react</Tabbtn>
-                <Tabbtn isSelected={passvalue === "button"} onSelect={() => handleSelect("button")}>button</Tabbtn>
             </menu>
-            {valuepassing}
-        </section>
+
+        </Section>
     )
 }
