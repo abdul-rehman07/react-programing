@@ -30,35 +30,47 @@ header img {
    width: 8rem;
 }
 
-h1{
+h1 {
    font-family: cursive;
    font-size: 3rem;
    margin: 0 auto 3rem auto;
    color: black;
 }
- 
-#game-container{
+
+#game-container {
    max-width: 45rem;
    margin: 3rem auto;
    padding: 2 rem;
    border-radius: 6px;
-   background: linear-gradient(#383624,#282617);
-   box-shadow: 0 0 20px rgba(0,0,0,0.5);
+   background: linear-gradient(#383624, #282617);
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
    position: relative;
-} 
-#players{
+}
+
+#players {
    list-style: none;
-    padding: 0;
-    margin: 3rem;
+   padding: 0;
+   margin: 3rem;
 }
-span{
+
+span {
    margin: 12px;
-  
+
 }
-li{
+
+li {
    display: inline;
    margin: 0px 10px;
 }
 
 /* #playeer-id{
 } */
+button {
+   margin: 2px 2px;
+   padding: 25px 25px;
+
+}
+#main-gameboard{
+   text-align: center;
+   
+}

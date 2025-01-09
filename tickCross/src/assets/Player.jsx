@@ -14,11 +14,11 @@ export default function Player({ initialName, symbol }) {
     }
 
     let playerName = <span>{Save}</span>;
-    let btnname = 'EDIT';
+    // let btnname = 'EDIT';
 
     if (isedit) {
-        playerName = <input type="text" required defaultValue={Save} onChange={handlChange} />
-        btnname = 'SAVE';
+        playerName = <input type="text" required value={Save} onChange={handlChange} />
+        // btnname = 'SAVE';
     }
     return (
 
@@ -27,6 +27,6 @@ export default function Player({ initialName, symbol }) {
                 {playerName}
                 <span>{symbol}</span>
             </span>
-            <button onClick={handlebtn}>{btnname}</button>
+            <button onClick={handlebtn}>{isedit ? 'Save' : 'Edit'}</button>
         </li>)
 }
