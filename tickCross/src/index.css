@@ -74,3 +74,7 @@ button {
    text-align: center;
    
 }
+#players.highlight-player li.active .player-name,
+#players.highlight-player li.active .player-symbol {
+   color: #f6e35a;
+}

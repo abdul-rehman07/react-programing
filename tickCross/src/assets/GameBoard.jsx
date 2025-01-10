@@ -6,15 +6,17 @@ const initialGameboard = [
     [null, null, null],
 ];
 
-export default function () {
+export default function ({ onSelectSqure, activePlayerSymbol }) {
     const [gameBoard, setgameBoard] = useState(initialGameboard);
 
     function handleselectedbtn(rowIndex, colIndex) {
         setgameBoard((prevBtn) => {
             const updatebtn = [...prevBtn.map(innerArray => [...innerArray])]
-            updatebtn[rowIndex][colIndex] = "X";
+            updatebtn[rowIndex][colIndex] = activePlayerSymbol;
             return updatebtn;
         });
+
+        onSelectSqure();
     }
 
     return (
