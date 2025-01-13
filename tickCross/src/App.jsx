@@ -18,7 +18,13 @@ function App() {
       }
 
       const updatedTruns = [
-        { square: { row: rowIndex, col: colIndex }, player: activePlayer },
+        {
+          square: {
+            row: rowIndex,
+            col: colIndex,
+          },
+          player: activePlayer
+        },
         ...prevTruns,
       ];
 

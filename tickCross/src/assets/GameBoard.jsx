@@ -7,12 +7,10 @@ const initialGameboard = [
 export default function ({ onSelectSqure, truns }) {
     let gameBoard = initialGameboard;
     for (const trun of truns) {
-        const { squre, player } = trun;
-        const { row, col } = squre;
+        const { square, player } = trun;
+        const { row, col } = square;
 
         gameBoard[row][col] = player;
-
-
     }
 
     // const [gameBoard, setgameBoard] = useState(initialGameboard);
@@ -34,11 +32,14 @@ export default function ({ onSelectSqure, truns }) {
                     <ol>
                         {row.map((playerSymbol, colIndex) => (
                             <li key={colIndex}>
-                                <button onClick={() => onSelectSqure(rowIndex, colIndex)}>{playerSymbol}</button>
+                                <button onClick={() => onSelectSqure(rowIndex, colIndex)}>
+                                    {playerSymbol}
+                                </button>
                             </li>
                         ))}
                     </ol>
                 </li>
             ))}
-        </ol>)
+        </ol>
+    );
 }
