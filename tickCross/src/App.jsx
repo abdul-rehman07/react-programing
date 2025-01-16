@@ -2,6 +2,13 @@ import Player from "./assets/player";
 import GameBoard from "./assets/GameBoard.jsx";
 import { useState } from "react";
 import Log from "./assets/Log.jsx";
+import { WINNING_COBINATION } from "./assets/WINNING_COBINATION.JS";
+
+const initialGameboard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
 function driveActivePlayer(gameTurns) {
   let currentPlayer = "X";
 
@@ -13,11 +20,32 @@ function driveActivePlayer(gameTurns) {
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
-  // const [activePlayer, setActivePlayer] = useState('X');
   const activePlayer = driveActivePlayer(gameTurns);
 
+  let gameBoard = initialGameboard;
+  for (const turn of gameTurns) {
+    const { square, player } = turn;
+    const { row, col } = square;
+
+    gameBoard[row][col] = player;
+  }
+
+  let winner;
+
+  for (const combination of WINNING_COBINATION) {
+    const firstSqureSybmol = gameBoard[combination[0].row][combination[0].column]
+    const secondSqureSybmol = gameBoard[combination[1].row][combination[1].column]
+    const thirdSqureSybmol = gameBoard[combination[2].row][combination[2].column]
+
+    if (firstSqureSybmol &&
+      firstSqureSybmol === secondSqureSybmol &&
+      firstSqureSybmol === thirdSqureSybmol) {
+      winner = firstSqureSybmol;
+    }
+
+  }
+
   function handleSelectSqure(rowIndex, colIndex) {
-    // setActivePlayer((curactiveplayer) => curactiveplayer === 'X' ? 'O' : 'X')
     setGameTurns((prevTurns) => {
       const currentPlayer = driveActivePlayer(prevTurns);
 
@@ -53,9 +81,10 @@ function App() {
               isActive={activePlayer === "O"}
             />
           </ol>
-          <GameBoard onSelectSqure={handleSelectSqure} turns={gameTurns} />
+          {winner && <p>You Won {winner}!</p>}
+          <GameBoard onSelectSqure={handleSelectSqure} board={gameBoard} />
         </div>
-        <Log />
+        <Log turns={gameTurns} />
       </main>
     </>
   );
