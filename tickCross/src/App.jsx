@@ -3,6 +3,7 @@ import GameBoard from "./assets/GameBoard.jsx";
 import { useState } from "react";
 import Log from "./assets/Log.jsx";
 import { WINNING_COBINATION } from "./assets/WINNING_COBINATION.JS";
+import GameOver from "./assets/GameOver.jsx";
 
 const initialGameboard = [
   [null, null, null],
@@ -31,6 +32,8 @@ function App() {
   }
 
   let winner;
+
+  let hasDraw = gameTurns.length === 9 && !winner;
 
   for (const combination of WINNING_COBINATION) {
     const firstSqureSybmol = gameBoard[combination[0].row][combination[0].column]
@@ -81,7 +84,7 @@ function App() {
               isActive={activePlayer === "O"}
             />
           </ol>
-          {winner && <p>You Won {winner}!</p>}
+          {(winner || hasDraw) && <GameOver winner={winner} />}
           <GameBoard onSelectSqure={handleSelectSqure} board={gameBoard} />
         </div>
         <Log turns={gameTurns} />
