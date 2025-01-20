@@ -19,11 +19,33 @@ function driveActivePlayer(gameTurns) {
   return currentPlayer;
 }
 
-function App() {
-  const [gameTurns, setGameTurns] = useState([]);
-  const activePlayer = driveActivePlayer(gameTurns);
 
-  let gameBoard = initialGameboard;
+function deriveWinner() {
+  let winner;
+
+  let hasDraw = gameTurns.length === 9 && !winner;
+
+  for (const combination of WINNING_COBINATION) {
+    const firstSqureSybmol =
+      gameBoard[combination[0].row][combination[0].column];
+    const secondSqureSybmol =
+      gameBoard[combination[1].row][combination[1].column];
+    const thirdSqureSybmol =
+      gameBoard[combination[2].row][combination[2].column];
+
+    if (
+      firstSqureSybmol &&
+      firstSqureSybmol === secondSqureSybmol &&
+      firstSqureSybmol === thirdSqureSybmol
+    ) {
+      winner = Players[firstSqureSybmol];
+    }
+  }
+  return winner;
+}
+
+function deriveGameboard() {
+  let gameBoard = [...initialGameboard.map(array => [...array])];
   for (const turn of gameTurns) {
     const { square, player } = turn;
     const { row, col } = square;
@@ -31,22 +53,24 @@ function App() {
     gameBoard[row][col] = player;
   }
 
-  let winner;
+  return gameBoard;
+}
 
-  let hasDraw = gameTurns.length === 9 && !winner;
+function App() {
 
-  for (const combination of WINNING_COBINATION) {
-    const firstSqureSybmol = gameBoard[combination[0].row][combination[0].column]
-    const secondSqureSybmol = gameBoard[combination[1].row][combination[1].column]
-    const thirdSqureSybmol = gameBoard[combination[2].row][combination[2].column]
-
-    if (firstSqureSybmol &&
-      firstSqureSybmol === secondSqureSybmol &&
-      firstSqureSybmol === thirdSqureSybmol) {
-      winner = firstSqureSybmol;
+  const [Players, setPlayers] = useState(
+    {
+      X: 'Player 1',
+      O: 'Player 2',
     }
+  );
+  const [gameTurns, setGameTurns] = useState([]);
+  const activePlayer = driveActivePlayer(gameTurns);
 
-  }
+
+
+  const winner = deriveWinner(gameBoard, Players)
+  const gameboard = deriveGameboard(gameTurns)
 
   function handleSelectSqure(rowIndex, colIndex) {
     setGameTurns((prevTurns) => {
@@ -64,9 +88,22 @@ function App() {
       ];
 
       return updatedTurns;
+    });
+  }
+
+  function handleRestart() {
+    setGameTurns([]);
+  }
+
+  function handlePlayerName(symbol, newName) {
+    setPlayers(prevPlayer => {
+
+      return {
+        ...prevPlayer,
+        [symbol]: newName
+      }
     }
     )
-      ;
   }
   return (
     <>
@@ -77,14 +114,16 @@ function App() {
               initialName="player 1"
               symbol="X"
               isActive={activePlayer === "X"}
+              onChangeName={handlePlayerName}
             />
             <Player
               initialName="player 2"
               symbol="O"
               isActive={activePlayer === "O"}
+              onChangeName={handlePlayerName}
             />
           </ol>
-          {(winner || hasDraw) && <GameOver winner={winner} />}
+          {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart} />}
           <GameBoard onSelectSqure={handleSelectSqure} board={gameBoard} />
         </div>
         <Log turns={gameTurns} />

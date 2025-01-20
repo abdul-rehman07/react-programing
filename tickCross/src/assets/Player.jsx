@@ -1,5 +1,5 @@
 import { useState } from "react"
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({ initialName, symbol, isActive, onChangeName }) {
 
     const [isedit, setIsedit] = useState(false);
     const [Save, setSave] = useState(initialName);
@@ -11,6 +11,7 @@ export default function Player({ initialName, symbol, isActive }) {
     function handlebtn() {
         setIsedit(editing => !editing)
 
+        onChangeName(symbol, Save)
     }
 
     let playerName = <span>{Save}</span>;
