@@ -1,10 +1,6 @@
-import { useState } from 'react';
 import React from 'react'
 
 function UserInput({ onChange, userInput }) {
-
-
-
     return (
         <section
             id='user-input'>
