@@ -24,8 +24,8 @@ function UserInput({ onChange, userInput }) {
                 <p>
                     <label >Expected Return</label>
                     <input type="number" required
-                        value={userInput.expectedRetrun}
-                        onChange={(event) => onChange("expectedRetrun", event.target.value)} />
+                        value={userInput.expectedReturn}
+                        onChange={(event) => onChange("expectedReturn", event.target.value)} />
                 </p>
                 <p>
                     <label >Duration</label>
