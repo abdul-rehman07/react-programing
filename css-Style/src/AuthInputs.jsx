@@ -35,6 +35,17 @@ border: none;
 
 `
 
+const Authdivinput = styled.div`
+
+width: 100%;
+max-width: 28rem;
+padding: 2rem;
+margin: 0 auto;
+border-radius: 0.5rem;
+box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+background: linear-gradient(180deg, #474232 0%, #28271c 100%);
+color: white;`
+
 
 export default function AuthInputs() {
 
@@ -59,15 +70,12 @@ export default function AuthInputs() {
   const passwordNotValid = submitted && enteredPassword.trim().length < 6;
 
   return (
-    <div id="auth-inputs">
+    <Authdivinput >
       <Control>
         <p >
           <Label $invalid={emailNotValid}>Email</Label>
           <Input
             type="email"
-            // style={{
-            //   backgroundColor: emailNotValid ? 'lightblue' : 'lightgray'
-            // }}
             $invalid={emailNotValid}
             onChange={(event) => handleInputChange('email', event.target.value)}
           />
@@ -84,11 +92,12 @@ export default function AuthInputs() {
         </p>
       </Control>
       <Buttondiv>
-        <button type="button" className="text-button">
+        <button type="button" className="border-black rounded-md bg-blue-600 text-white px-2  ">
           Create a new account
         </button>
         <Button onClick={handleLogin}>Sign In</Button>
       </Buttondiv>
-    </div >
+    </Authdivinput >
+
   );
 }
