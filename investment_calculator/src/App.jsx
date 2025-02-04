@@ -29,7 +29,7 @@ function App() {
     <>
       <Header />
       <UserInput userInput={userInput} onChange={handleChange} />
-      {!inputIsValid && <p className="center">Please Enter a Duration Grator Then ZERO </p>}
+      {!inputIsValid && <p className="center">Please Enter A Duration Greater Then ZERO </p>}
       {inputIsValid && <Result input={userInput} />}
     </>
   )
