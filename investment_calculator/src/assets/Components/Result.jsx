@@ -1,5 +1,6 @@
 import { calculateInvestmentResults, formatter } from "../investment.js"
 export default function Result({ input }) {
+    // const results = {};
     const resultData = calculateInvestmentResults(input)
     console.log(resultData);
     const initialInvestment =
