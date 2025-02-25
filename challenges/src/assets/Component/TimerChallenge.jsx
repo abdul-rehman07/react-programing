@@ -10,31 +10,39 @@ function TimerChallenge({ title, targetTime }) {
 
     if (timeRemaining <= 0) {
         clearInterval(timer.current);
-        setTimeRemaining(targetTime * 1000);
         dialog.current.open();
+    }
+
+    function handleReset() {
+        setTimeRemaining(targetTime * 1000);
+
     }
 
     function handleStart() {
         timer.current = setInterval(() => {
-            setTimeRemaining(prevTimeRemaining => prevTimeRemaining - 10)
+            setTimeRemaining(prevTimeRemaining => prevTimeRemaining - 10);
         }, 10);
     }
 
-    function handlestop() {
-        dialog.current.open()
+    function handleStop() {
+        dialog.current.open();
         clearInterval(timer.current);
     }
 
     return (
         <>
-            <ResultModal ref={dialog} targetTime={targetTime} remainingTime={timeRemaining} />
+            <ResultModal
+                ref={dialog}
+                targetTime={targetTime}
+                remainingTime={timeRemaining}
+                onReset={handleReset} />
             <section className='challenge'>
                 <h2>{title}</h2>
                 <p className='challenge-time'>
                     {targetTime} second{targetTime > 1 ? 's' : ''}
                 </p>
                 <p>
-                    <button onClick={timerIsActive ? handlestop : handleStart}>
+                    <button onClick={timerIsActive ? handleStop : handleStart}>
                         {timerIsActive ? "Stop" : "Start"} challenge</button>
                 </p>
                 <p className={timerIsActive ? 'active' : undefined}>
