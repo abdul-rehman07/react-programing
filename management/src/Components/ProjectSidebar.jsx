@@ -25,7 +25,7 @@ function ProjectSidebar({
                     }
                     return (
                         <li key={project.id}>
-                            <button onClick={onSelectProject}
+                            <button onClick={() => onSelectProject(project.id)}
                             >{project.title}
                             </button>
                         </li>
