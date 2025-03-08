@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
 import Header from './assets/Components/Header.jsx';
-import 
-
-import { DUMMY_PRODUCTS } from './dummy-products.js';
+import Shop from './assets/Components/Shop.jsx';
+import { DUMMY_PRODUCTS } from './assets/dummy-products.js';
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState({
