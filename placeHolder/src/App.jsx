@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 import Places from './components/Places.jsx';
 import { AVAILABLE_PLACES } from './data.js'
-import Modal from './components/Modal.jsx';
-import DeleteConfirmation from './components/DeleteConfirmation.jsx';
+import Modal from './Components/Modal.jsx';
+import DeleteConfirmation from './Components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import { sortPlacesByDistance } from './loc.js';
 
